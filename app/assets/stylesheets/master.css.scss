@@ -1,3 +1,41 @@
 .clear {
   clear: both;
 }
+
+.circle {
+    padding: 25px 10px;
+    font-weight:bold;
+    position: relative;
+    border-radius: 15%;
+    background: purple;
+    width: 130px;
+    height: 80px;
+    margin: 10px 10px;
+    text-align: center;
+    color: #FFF;
+    font-size: 20px;
+}
+
+.slogan {
+  font-style: bold;
+  font-size: 15px;
+  padding-top: 30px;
+}
+
+.links {
+    padding-top: 30px;
+}
+
+.links a {
+    color: purple;
+    font-size: 15px;
+    border-bottom: 1px solid purple;
+}
+
+header {
+    border-top: 9px solid #222222;
+}
+
+hr {
+    clear: both;
+}

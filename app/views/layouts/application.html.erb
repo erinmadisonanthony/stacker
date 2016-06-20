@@ -2,23 +2,23 @@
 <html>
 <head>
   <title>Stacker</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <header>
     <div class="col-xs-3">
-      STACKER
+      <div class="circle">STACKER</div>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-4 slogan">
       A tool for creating custom stacks
     </div>
-    <div class="col-xs-5">
+    <div class="col-xs-5 links">
       <%= link_to 'Add an Item', '#' %>
     </div>
   </header>
-
+  <hr />
   <br class="clear" />
 
 <%= yield %>
