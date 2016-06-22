@@ -2,11 +2,11 @@
   clear: both;
 }
 
-.circle {
+.logo {
     padding: 25px 10px;
     font-weight:bold;
     position: relative;
-    border-radius: 15%;
+    border-radius: 10%;
     background: purple;
     width: 130px;
     height: 80px;
@@ -14,6 +14,10 @@
     text-align: center;
     color: #FFF;
     font-size: 20px;
+}
+
+.logo-link:hover {
+    text-decoration: none;
 }
 
 .slogan {
@@ -30,6 +34,10 @@
     color: purple;
     font-size: 15px;
     border-bottom: 1px solid purple;
+}
+
+.links a:hover {
+    text-decoration: none;
 }
 
 header {

@@ -1,0 +1,6 @@
+<h1>Enter an Item</h1>
+<%= simple_form_for @item do |f| %>
+  <%= f.input :name %>
+  <br />
+  <%= f.submit 'Create', class: 'btn btn-success' %>
+<% end %>

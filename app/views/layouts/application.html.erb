@@ -9,13 +9,15 @@
 <body>
   <header>
     <div class="col-xs-3">
-      <div class="circle">STACKER</div>
+      <%= link_to root_path, class: 'logo-link' do %>
+        <div class="logo">STACKER</div>
+      <% end %>  
     </div>
     <div class="col-xs-4 slogan">
       A tool for creating custom stacks
     </div>
     <div class="col-xs-5 links">
-      <%= link_to 'Add an Item', '#' %>
+      <%= link_to 'Add an Item', new_item_path %>
     </div>
   </header>
   <hr />
