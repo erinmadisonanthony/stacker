@@ -8,7 +8,10 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Item.create(item_params) 
+    @item = Item.create(item_params) 
+    if @item.invalid?
+      flash[:error] = '<strong>Invalid Entry</strong>'
+    end
     redirect_to root_path
   end
 
