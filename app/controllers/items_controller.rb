@@ -3,10 +3,6 @@ class ItemsController < ApplicationController
     @item = Item.last
   end
 
-  def new
-    @item = Item.new
-  end
-
   def create
     @item = Item.create(item_params) 
     if @item.invalid?
