@@ -13,10 +13,10 @@
         <div class="logo">STACKER</div>
       <% end %>  
     </div>
-    <div class="col-xs-4 slogan">
+    <div class="col-xs-4 hidden-xs slogan">
       A tool for creating custom stacks
     </div>
-    <div class="col-xs-5 links">
+    <div class="col-xs-8 col-xs-offset-1 col-sm-offset-0 col-sm-5 links">
       <!-- Button trigger modal -->
       <%= link_to 'Add an Item', '#', data: { toggle: 'modal', target: '#myModal' } %>
     </div>
@@ -32,7 +32,7 @@
         </div>
         <%= simple_form_for Item.new do |f| %>        
           <div class="modal-body">
-            <%= f.input :name %>
+            <%= f.input :name, label: "What is the name of the item you would like to add?" %>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

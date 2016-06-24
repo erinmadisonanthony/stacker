@@ -51,3 +51,7 @@ hr {
 .text-muted {
     text-align: right;
 }
+
+::selection {
+  background-color: purple;
+}
