@@ -7,5 +7,18 @@
 }
 
 ::selection {
-  background-color: purple;
+  background-color: #b3eaff;
+}
+
+.box {
+  background: #e6e6fa;
+  border: 1px solid;
+  border-color: #008080;
+  border-radius: 3%;
+  margin: 3px;
+  padding: 5px;
+}
+
+#stack {
+    text-align: center;
 }
