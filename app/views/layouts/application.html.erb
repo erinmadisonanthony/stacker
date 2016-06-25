@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>Stacker</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
-  <nav class="navbar navbar-inverse" role="navigation">
+  <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -19,12 +21,12 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to root_path, class: 'navbar-brand' do %>
-          <div>Stacker</div>
+          <div id="logo">STACKER</div>
         <% end %>  
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="collapse navbar-collapse nav-links" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><!-- Button trigger modal -->
           <%= link_to 'Add an Item', '#', data: {toggle: 'modal', target: '#myModal'} %>
