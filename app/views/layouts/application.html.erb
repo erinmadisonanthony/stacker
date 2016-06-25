@@ -20,16 +20,17 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to root_path, class: 'navbar-brand' do %>
-          <div id="logo">STACKER</div>
-        <% end %>  
+        <%= link_to 'STACKER', root_path, class: 'navbar-brand', id: 'logo' %>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse nav-links" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><!-- Button trigger modal -->
-          <%= link_to 'Add an Item', '#', data: {toggle: 'modal', target: '#myModal'} %>
+          <%= link_to '#', data: {toggle: 'modal', target: '#myModal'} do %>
+            <i class="glyphicon glyphicon-plus-sign"></i>
+            Add an Item
+          <% end %>  
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -53,7 +54,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <%= f.submit 'Create Item', class: 'btn btn-success' %>
+            <%= f.submit 'Create Item', class: 'btn btn-primary' %>
           </div>
         <% end %>  
       </div>
