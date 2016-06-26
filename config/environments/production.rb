@@ -1,4 +1,7 @@
 Rails.application.configure do
+
+  #Configure default mail URL
+  config.action_mailer.default_url_options = { host: 'stacker-erin-anthony.herokuapp.com' }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   #set the root route
   root 'items#index'
 
