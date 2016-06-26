@@ -1,12 +1,14 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
     @items = Item.all 
   end
 
   def create
-    @item = Item.create(item_params) 
+    @item = current_user.items.create(item_params) 
     if @item.invalid?
-      flash[:error] = '<strong>Invalid Entry</strong>'
+      flash[:alert] = 'Invalid Entry. Item name must be between 2 and 50 characters.'
     end
     redirect_to root_path
   end
