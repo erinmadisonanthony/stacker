@@ -1,6 +1,6 @@
 <% @items.each do |item| %>
   <div class="box col-xs-6 col-xs-offset-3">
-    <h1 id="stack"><%= item.name %></h1>
+    <h1 class="centered"><%= link_to item.name, item_path(item) %></h1>
   </div> 
 <% end %>   
 
