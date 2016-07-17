@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.create(item_params) 
     if @item.invalid?
-      flash[:alert] = 'Invalid Entry. Item name must be between 2 and 50 characters.'
+      flash[:alert] = 'Invalid Entry. Name and description must be between 2 and 50 characters.'
     end
     redirect_to root_path
   end
@@ -29,6 +29,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name)
+    params.require(:item).permit(:name, :description)
   end
 end

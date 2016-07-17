@@ -1,5 +1,6 @@
 <div class="box col-xs-8 col-xs-offset-2">
   <h1 class="centered"><%= @item.name %></h1>
+  <p class="centered"><%= @item.description %></p>
 </div>
 <div class="pull-right">
   <% if current_user && current_user == @item.user %>
