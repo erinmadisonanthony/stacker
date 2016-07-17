@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def index
     @items = Item.all 
@@ -19,6 +19,9 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
+    if @item.user != current_user
+      return render text: 'Delete action not allowed', status: :forbidden
+    end
     @item.destroy
     redirect_to root_path
   end
