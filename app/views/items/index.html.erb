@@ -1,4 +1,4 @@
-<% @items.each do |item| %>
+<% @items.rank(:order).each do |item| %>
   <div class="box col-xs-6 col-xs-offset-3">
     <h1 class="centered"><%= link_to item.name, item_path(item) %></h1>
   </div> 

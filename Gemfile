@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
@@ -35,6 +34,9 @@ gem 'simple_form'
 
 #Use Devise for user log-in
 gem 'devise', '>= 3.2.4'
+
+#Use Ranked Model for reordering items
+gem 'ranked-model'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
