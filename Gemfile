@@ -38,6 +38,9 @@ gem 'devise', '>= 3.2.4'
 #Use Ranked Model for reordering items
 gem 'ranked-model'
 
+#Use jQuery UI Rails for additional jQuery effects
+gem 'jquery-ui-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
