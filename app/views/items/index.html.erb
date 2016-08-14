@@ -1,15 +1,24 @@
-  <script>
-    $(function() {
-      $('.items').sortable({});
-    });
-  </script>
-
 <ul class="items">
   <% @items.rank(:order).each do |item| %>
-    <ul class="box col-xs-6 col-xs-offset-3">
+    <ul class="box col-xs-6 col-xs-offset-3" data-update-url="<%= item_path(item) %>">
       <h1 class="centered"><%= link_to item.name, item_path(item) %></h1>
     </ul> 
   <% end %>
 </ul>   
 
 <br class="clear" />
+
+<script>
+  $(function() {
+    $('.items').sortable({
+      update: function(event, ui) {
+      $.ajax({
+          type: 'PUT',
+          url: ui.item.data('update-url'),
+          dataType: 'json',
+          data: { item: { order_position: ui.item.index() } }
+        });
+      }
+    });
+  });
+</script>

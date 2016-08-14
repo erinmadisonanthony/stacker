@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :update]
 
   def index
     @items = Item.all 
@@ -26,9 +26,18 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
+  def update
+    current_item.update_attributes(item_params)
+    render text: 'updated!'
+  end
+
   private
 
+  def current_item
+    @current_item ||= Item.find(params[:id])
+  end
+
   def item_params
-    params.require(:item).permit(:name, :description)
+    params.require(:item).permit(:name, :description, :order_position)
   end
 end
