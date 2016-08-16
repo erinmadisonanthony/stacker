@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   #add URLs for items
   resources :items
+
+  #add URLs for pics
+  resources :pics
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
