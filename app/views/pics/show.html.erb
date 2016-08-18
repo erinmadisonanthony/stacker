@@ -1,0 +1,8 @@
+<div class="box col-xs-8 col-xs-offset-2">
+  <h1 class="centered"><%= @pic.message %></h1>
+</div>
+<div class="pull-right">
+  <% if current_user && current_user == @pic.user %>
+    <%= link_to 'Delete', pic_path(@pic), method: :delete, data: {confirm: 'Are you sure you want to delete this pic?'}, class: 'btn btn-primary' %>
+  <% end %>
+</div>
