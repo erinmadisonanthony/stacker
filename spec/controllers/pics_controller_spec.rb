@@ -15,6 +15,7 @@ RSpec.describe PicsController, type: :controller do
     end
 
     it "should successfully show the new pic form" do
+      DatabaseCleaner.clean
       user = FactoryGirl.create(:user)
       sign_in user
 
@@ -30,6 +31,7 @@ RSpec.describe PicsController, type: :controller do
     end
 
     it "should successfully create a new pic in the database" do
+      DatabaseCleaner.clean
       user = FactoryGirl.create(:user)
       sign_in user
       
@@ -42,6 +44,7 @@ RSpec.describe PicsController, type: :controller do
     end
 
     it "should properly deal with validation errors" do
+      DatabaseCleaner.clean
       user = FactoryGirl.create(:user)
       sign_in user
       
