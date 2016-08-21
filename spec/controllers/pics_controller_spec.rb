@@ -3,9 +3,17 @@ require 'rails_helper'
 RSpec.describe PicsController, type: :controller do
 
   describe "grams#destroy" do
+    it "shouldn't let unauthenticated users destroy a pic" do
+      DatabaseCleaner.clean 
+      pic = FactoryGirl.create(:pic)
+      delete :destroy, id: pic.id
+      expect(response).to redirect_to new_user_session_path
+    end
+
     it "should allow a user to destroy pics" do
       DatabaseCleaner.clean 
       pic = FactoryGirl.create(:pic)
+      sign_in pic.user 
       delete :destroy, id: pic.id 
       expect(response).to redirect_to root_path
       pic = Pic.find_by_id(pic.id)
@@ -13,15 +21,27 @@ RSpec.describe PicsController, type: :controller do
     end
 
     it "should return a 404 message if we cannot find a pic with the id that is specified" do
+      DatabaseCleaner.clean 
+      user = FactoryGirl.create(:user)
+      sign_in user 
       delete :destroy, id: 'FakeID'
       expect(response).to have_http_status(:not_found)
     end
   end
 
   describe "pics#update" do
+    it "shouldn't let unauthenticated users create a pic" do
+      DatabaseCleaner.clean 
+      pic = FactoryGirl.create(:pic)
+      patch :update, id: pic.id, pic: { message: "Hello" }
+      expect(response).to redirect_to new_user_session_path
+    end
+
     it "should allow users to successfully update pics" do
       DatabaseCleaner.clean 
       pic = FactoryGirl.create(:pic, message: "Original Message")
+      sign_in pic.user 
+
       patch :update, id: pic.id, pic: { message: "New Message" }
       expect(response).to redirect_to root_path
       pic.reload
@@ -29,6 +49,10 @@ RSpec.describe PicsController, type: :controller do
     end
 
     it "should have http 404 error if the pic cannot be found" do
+      DatabaseCleaner.clean
+      user = FactoryGirl.create(:user)
+      sign_in user
+
       patch :update, id: "FakeID", pic: { message: "New Message" }
       expect(response).to have_http_status(:not_found)
     end
@@ -36,6 +60,8 @@ RSpec.describe PicsController, type: :controller do
     it "should render the edit form with an http status of unprocessable_entity" do
       DatabaseCleaner.clean
       pic = FactoryGirl.create(:pic, message: "Original Message")
+      sign_in pic.user 
+
       patch :update, id: pic.id, pic: { message: ""}
       expect(response).to have_http_status(:unprocessable_entity)
       pic.reload
@@ -44,14 +70,27 @@ RSpec.describe PicsController, type: :controller do
   end
 
   describe "pics#edit action" do
+    it "shouldn't let unauthenticated users edit a pic" do
+      DatabaseCleaner.clean 
+      pic = FactoryGirl.create(:pic) 
+      get :edit, id: pic.id
+      expect(response).to redirect_to new_user_session_path
+    end
+
     it "should successfully show the edit form if the pic is found" do
       DatabaseCleaner.clean
       pic = FactoryGirl.create(:pic)
+      sign_in pic.user 
+
       get :edit, id: pic.id
       expect(response).to have_http_status(:success)
     end
 
     it "should return a 404 error message if the pic is not found" do
+      DatabaseCleaner.clean 
+      user = FactoryGirl.create(:user)
+      sign_in user 
+
       get :edit, id: 'FakeID'
       expect(response).to have_http_status(:not_found)
     end
