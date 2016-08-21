@@ -3,6 +3,16 @@ require 'rails_helper'
 RSpec.describe PicsController, type: :controller do
 
   describe "grams#destroy" do
+    it "shouldn't allow users who didn't create the pic to destroy it" do
+      DatabaseCleaner.clean
+      pic = FactoryGirl.create(:pic)
+      user = FactoryGirl.create(:user)
+      sign_in user 
+
+      delete :destroy, id: pic.id 
+      expect(response).to have_http_status(:forbidden)
+    end
+
     it "shouldn't let unauthenticated users destroy a pic" do
       DatabaseCleaner.clean 
       pic = FactoryGirl.create(:pic)
@@ -30,6 +40,16 @@ RSpec.describe PicsController, type: :controller do
   end
 
   describe "pics#update" do
+    it "shouldn't let users who didn't create the pic update it" do
+      DatabaseCleaner.clean
+      pic = FactoryGirl.create(:pic)
+      user = FactoryGirl.create(:user)
+      sign_in user 
+
+      patch :update, id: pic.id, pic: { message: 'Updated' }
+      expect(response).to have_http_status(:forbidden)
+    end
+
     it "shouldn't let unauthenticated users create a pic" do
       DatabaseCleaner.clean 
       pic = FactoryGirl.create(:pic)
@@ -69,7 +89,17 @@ RSpec.describe PicsController, type: :controller do
     end
   end
 
-  describe "pics#edit action" do
+  describe "pics#edit" do
+    it "shouldn't let a user who did not create the pic edit a pic" do
+      DatabaseCleaner.clean
+      pic = FactoryGirl.create(:pic)
+      user = FactoryGirl.create(:user)
+      sign_in user 
+
+      get :edit, id: pic.id 
+      expect(response).to have_http_status(:forbidden)
+    end
+
     it "shouldn't let unauthenticated users edit a pic" do
       DatabaseCleaner.clean 
       pic = FactoryGirl.create(:pic) 
