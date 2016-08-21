@@ -2,6 +2,22 @@ require 'rails_helper'
 
 RSpec.describe PicsController, type: :controller do
 
+  describe "grams#destroy" do
+    it "should allow a user to destroy pics" do
+      DatabaseCleaner.clean 
+      pic = FactoryGirl.create(:pic)
+      delete :destroy, id: pic.id 
+      expect(response).to redirect_to root_path
+      pic = Pic.find_by_id(pic.id)
+      expect(pic).to eq nil 
+    end
+
+    it "should return a 404 message if we cannot find a pic with the id that is specified" do
+      delete :destroy, id: 'FakeID'
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
   describe "pics#update" do
     it "should allow users to successfully update pics" do
       DatabaseCleaner.clean 
