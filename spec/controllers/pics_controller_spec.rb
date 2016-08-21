@@ -1,6 +1,60 @@
 require 'rails_helper'
 
 RSpec.describe PicsController, type: :controller do
+
+  describe "pics#update" do
+    it "should allow users to successfully update pics" do
+      DatabaseCleaner.clean 
+      pic = FactoryGirl.create(:pic, message: "Original Message")
+      patch :update, id: pic.id, pic: { message: "New Message" }
+      expect(response).to redirect_to root_path
+      pic.reload
+      expect(pic.message).to eq "New Message"
+    end
+
+    it "should have http 404 error if the pic cannot be found" do
+      patch :update, id: "FakeID", pic: { message: "New Message" }
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it "should render the edit form with an http status of unprocessable_entity" do
+      DatabaseCleaner.clean
+      pic = FactoryGirl.create(:pic, message: "Original Message")
+      patch :update, id: pic.id, pic: { message: ""}
+      expect(response).to have_http_status(:unprocessable_entity)
+      pic.reload
+      expect(pic.message).to eq "Original Message"
+    end
+  end
+
+  describe "pics#edit action" do
+    it "should successfully show the edit form if the pic is found" do
+      DatabaseCleaner.clean
+      pic = FactoryGirl.create(:pic)
+      get :edit, id: pic.id
+      expect(response).to have_http_status(:success)
+    end
+
+    it "should return a 404 error message if the pic is not found" do
+      get :edit, id: 'FakeID'
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  describe "pics#show action" do
+    it "should successfully show the page if the pic is found" do
+      DatabaseCleaner.clean
+      pic = FactoryGirl.create(:pic)
+      get :show, id: pic.id
+      expect(response).to have_http_status(:success)
+    end
+    
+    it "should return a 404 error if the pic is not found" do
+      get :show, id: 'FakeID'
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
   describe "pics#index action" do
     it "should successfully show the page" do
       get :index
@@ -52,4 +106,5 @@ RSpec.describe PicsController, type: :controller do
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
+
 end
