@@ -41,6 +41,9 @@ gem 'ranked-model'
 #Use jQuery UI Rails for additional jQuery effects
 gem 'jquery-ui-rails'
 
+#Use CarrierWave to upload photos
+gem 'carrierwave'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

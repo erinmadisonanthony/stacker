@@ -1,1 +1,10 @@
-<h1>Pics Page</h1>
+<ul>
+  <% @pics.each do |pic| %>
+    <ul class="box col-xs-6 col-xs-offset-3">
+      <%= image_tag pic.photo %>
+      <p class="centered"><%= pic.message %></p>
+    </ul> 
+  <% end %>
+</ul>   
+
+<br class="clear" />

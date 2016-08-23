@@ -1,6 +1,7 @@
 <h1>Add a New Pic</h1>
 
 <%= simple_form_for(Pic.new, html: { class: 'horizontal'}) do |f| %>
+  <%= f.input :photo %>
   <%= f.input :message %>
   <%= f.submit "Submit" %>
 <% end %>

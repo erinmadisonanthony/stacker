@@ -1,5 +1,6 @@
 <div class="box col-xs-8 col-xs-offset-2">
-  <h1 class="centered"><%= @pic.message %></h1>
+  <%= image_tag pic.photo %>
+  <p class="centered"><%= @pic.message %></p>
 </div>
 <div class="pull-right">
   <% if current_user && current_user == @pic.user %>
