@@ -174,7 +174,11 @@ RSpec.describe PicsController, type: :controller do
       user = FactoryGirl.create(:user)
       sign_in user
       
-      post :create, pic: {message: 'Lookin Good!'}
+      post :create, pic: {
+        photo: fixture_file_upload("/picture.jpg", "image/jpg"),
+        message: 'Lookin Good!'
+      }
+
       expect(response).to redirect_to root_path
 
       pic = Pic.last
